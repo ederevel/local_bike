@@ -16,7 +16,7 @@ renamed as (
         phone,
         active,
         store_id,
-        cast(manager_id as int64) as manager_id
+        safe_cast(manager_id as int64) as manager_id
 
     from source
 

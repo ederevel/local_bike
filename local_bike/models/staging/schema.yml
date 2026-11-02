@@ -47,7 +47,6 @@ models:
       - name: item_id
         description: "Within the same order identifier for the item like item 1, 2, 3..."
         tests:
-            - unique
             - not_null
       - name: product_id
         description: "Foreign key, linking the order item to the corresponding product."
