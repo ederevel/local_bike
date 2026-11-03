@@ -16,9 +16,9 @@ select
     sum(quantity) as total_items,
 FROM {{ ref('stg_local_bike__orders')}} o
 INNER JOIN {{ ref('stg_local_bike__order_item')}} oi on o.order_id = oi.order_id
-RIGHT JOIN {{ ref('stg_local_bike__staffs')}} staff on o.staff_id = staff.staff_id
-RIGHT JOIN {{ ref('stg_local_bike__stores')}} store on o.store_id = store.store_id
-RIGHT JOIN {{ ref('stg_local_bike__products')}} product on oi.product_id = product.product_id
+INNER JOIN {{ ref('stg_local_bike__staffs')}} staff on o.staff_id = staff.staff_id
+INNER JOIN {{ ref('stg_local_bike__stores')}} store on o.store_id = store.store_id
+INNER JOIN {{ ref('stg_local_bike__products')}} product on oi.product_id = product.product_id
 INNER JOIN {{ ref('stg_local_bike__brands')}} brand on product.brand_id = brand.brand_id
 
 
