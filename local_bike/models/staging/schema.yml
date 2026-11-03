@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: stg__local_bike_brands
+  - name: stg_local_bike__brands
     description: "This model contains information about the bikes brands"
     columns:
       - name: brand_id
@@ -10,7 +10,7 @@ models:
             - unique
             - not_null
 
-  - name: stg__local_bike_categories
+  - name: stg_local_bike__categories
     description: "This model contains information about the bikes categories"
     columns:
       - name: category_id
@@ -19,7 +19,7 @@ models:
             - unique
             - not_null
 
-  - name: stg__local_bike_customers
+  - name: stg_local_bike__customers
     description: "This model contains information about the customers"
     columns:
       - name: customer_id
@@ -28,7 +28,7 @@ models:
             - unique
             - not_null
 
-  - name: stg__local_bike_order_item
+  - name: stg_local_bike__order_item
     description: "This model contains information about the order items"
     columns:
       - name: order_item_id
@@ -42,7 +42,7 @@ models:
           - relationships:
               name: order_id_foreign_key_in_stg_local_bike__order_item
               arguments:
-                to: ref('stg__local_bike_orders')
+                to: ref('stg_local_bike__orders')
                 field: order_id
       - name: item_id
         description: "Within the same order identifier for the item like item 1, 2, 3..."
@@ -54,10 +54,10 @@ models:
           - relationships:
               name: product_id_foreign_key_in_stg_local_bike__order_item
               arguments:
-                to: ref('stg__local_bike_products')
+                to: ref('stg_local_bike__products')
                 field: product_id
 
-  - name: stg__local_bike_orders
+  - name: stg_local_bike__orders
     description: "This model contains information about the orders"
     columns:
       - name: order_id
@@ -71,7 +71,7 @@ models:
           - relationships:
               name: customer_id_foreign_key_in_stg_local_bike__orders
               arguments:
-                to: ref('stg__local_bike_customers')
+                to: ref('stg_local_bike__customers')
                 field: customer_id
       - name: store_id
         description: "Foreign key, linking the order to the corresponding store."
@@ -79,7 +79,7 @@ models:
           - relationships:
               name: store_id_foreign_key_in_stg_local_bike__orders
               arguments:
-                to: ref('stg__local_bike_stores')
+                to: ref('stg_local_bike__stores')
                 field: store_id
       - name: staff_id
         description: "Foreign key, linking the order item to the corresponding staff."
@@ -87,10 +87,10 @@ models:
           - relationships:
               name: staff_id_foreign_key_in_stg_local_bike__orders
               arguments:
-                to: ref('stg__local_bike_staffs')
+                to: ref('stg_local_bike__staffs')
                 field: staff_id
 
-  - name: stg__local_bike_products
+  - name: stg_local_bike__products
     description: "This model contains information about the products"
     columns:
       - name: product_id
@@ -104,7 +104,7 @@ models:
           - relationships:
               name: brand_id_foreign_key_in_stg_local_bike__products
               arguments:
-                to: ref('stg__local_bike_brands')
+                to: ref('stg_local_bike__brands')
                 field: brand_id
       - name: category_id
         description: "Foreign key, linking the product to the corresponding category."
@@ -112,10 +112,10 @@ models:
           - relationships:
               name: category_id_foreign_key_in_stg_local_bike__products
               arguments:
-                to: ref('stg__local_bike_categories')
+                to: ref('stg_local_bike__categories')
                 field: category_id
 
-  - name: stg__local_bike_staffs
+  - name: stg_local_bike__staffs
     description: "This model contains information about the staffs"
     columns:
       - name: staff_id
@@ -129,7 +129,7 @@ models:
           - relationships:
               name: store_id_foreign_key_in_stg_local_bike__staffs
               arguments:
-                to: ref('stg__local_bike_stores')
+                to: ref('stg_local_bike__stores')
                 field: store_id
       - name: manager_id
         description: "Foreign key, linking the staff member to their manager. Null for the top-level manager."
@@ -137,7 +137,7 @@ models:
           - relationships:
               name: manager_id_foreign_key_in_stg_local_bike__staffs
               arguments:
-                to: ref('stg__local_bike_staffs')
+                to: ref('stg_local_bike__staffs')
                 field: staff_id
       - name: active
         description: "1 if active 0 if inactive"
@@ -148,7 +148,7 @@ models:
                 values: [0, 1]
                 quote: false
 
-  - name: stg__local_bike_stocks
+  - name: stg_local_bike__stocks
     description: "This model contains the stock quantity of each product in each store. The primary key is the combination of store_id and product_id."
     columns:
       - name: store_id
@@ -158,7 +158,7 @@ models:
           - relationships:
               name: store_id_foreign_key_in_stg_local_bike__stocks
               arguments:
-                to: ref('stg__local_bike_stores')
+                to: ref('stg_local_bike__stores')
                 field: store_id
       - name: product_id
         description: "Part of the composite primary key, and foreign key linking the stock row to the corresponding product."
@@ -167,10 +167,10 @@ models:
           - relationships:
               name: product_id_foreign_key_in_stg_local_bike__stocks
               arguments:
-                to: ref('stg__local_bike_products')
+                to: ref('stg_local_bike__products')
                 field: product_id
 
-  - name: stg__local_bike_stores
+  - name: stg_local_bike__stores
     description: "This model contains information about the stores"
     columns:
       - name: store_id
